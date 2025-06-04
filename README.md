@@ -18,7 +18,10 @@ Member Berries is a secure, minimal fork that:
 2. Clone this repo
 3. Run `cd member-berries && bun install`
 4. Configure Claude Desktop (see member-berries/README.md)
-5. Add custom prompt (see member-berries/CLAUDE_PROMPT_SETUP.md)
+5. **IMPORTANT**: Add the Member Berries personality prompt to Claude Desktop:
+   - Open Claude Desktop → Settings → Preferences → Custom Instructions
+   - Copy the prompt from `member-berries/CLAUDE_PROMPT_SETUP.md`
+   - This makes Claude actually use the memory features naturally!
 
 ## Features
 

@@ -21,6 +21,23 @@ This MCP creates a memory layer between your Apple apps and Claude, allowing for
 - Friendly reminders without being intrusive
 - A more human-like interaction pattern
 
+## What Makes Member Berries Different?
+
+### The Sweet Spot
+
+Member Berries hits the perfect balance:
+- **Just enough access**: Only Calendar, Notes, and Reminders - the productivity essentials
+- **Memory that matters**: Remembers your completed events and brings them up naturally
+- **Fun personality**: Based on South Park's nostalgic Member Berries
+- **Simple by design**: Stripped down to what actually makes conversations better
+
+### Perfect For
+
+- **Apple ecosystem users** who want their AI to understand their day
+- **Anyone tired of repetitive AI conversations** that start from scratch
+- **People who appreciate simplicity** over feature bloat
+- **South Park fans** who get the reference 😄
+
 ## Features
 
 ### Core Tools
@@ -33,12 +50,6 @@ This MCP creates a memory layer between your Apple apps and Claude, allowing for
 - **💬 Conversation Starters** - Generates natural icebreakers
 - **📊 Context Tracking** - Categorizes activities (shopping, meetings, health, social)
 - **⏰ Smart Timing** - Only brings up relevant recent events
-
-### Privacy-First Design
-- **No Messages/Email Access** - Your communications stay private
-- **No Web Browsing** - No internet access capability
-- **Local Memory Only** - Everything stays on your Mac
-- **You Control What's Shared** - Only Calendar, Notes, and Reminders
 
 ## Installation
 
@@ -68,9 +79,15 @@ bun install
 }
 ```
 
-3. Add the custom prompt to Claude (see CLAUDE_PROMPT_SETUP.md)
+3. **CRITICAL STEP - Add the Member Berries personality:**
+   - Open Claude Desktop
+   - Go to Settings → Preferences → Custom Instructions
+   - Copy and paste the entire prompt from `CLAUDE_PROMPT_SETUP.md`
+   - Without this, Claude won't use the memory features naturally!
 
 4. Restart Claude Desktop
+
+⚠️ **Note**: The custom prompt is what makes Member Berries special. Without it, Claude will have access to your calendar/notes/reminders but won't proactively use them in conversation.
 
 ## Usage
 
@@ -115,12 +132,6 @@ For the full experience, add the Member Berries prompt to your Claude preference
 - Event: "Dentist Appointment"
 - Memory: "User had dentist appointment"
 - Starter: "Hope the dentist appointment went smoothly! Everything okay?"
-
-## Privacy & Security
-
-Member Berries takes a balanced approach:
-- ✅ **Yes**, Claude can see your calendar, notes, and reminders
-- ✅ **Yes**, memories are stored locally in `~/.member-berries-memory.json`
 
 ## Contributing
 

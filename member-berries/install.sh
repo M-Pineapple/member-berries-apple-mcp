@@ -50,6 +50,11 @@ echo '    }'
 echo '  }'
 echo '}'
 echo ""
-echo "4. Restart Claude Desktop"
+echo "4. ⚠️  IMPORTANT: Add the Member Berries personality prompt!"
+echo "   - Go to Settings → Preferences → Custom Instructions"
+echo "   - Copy the prompt from CLAUDE_PROMPT_SETUP.md"
+echo "   - This is CRITICAL for the Member Berries experience!"
 echo ""
-echo "🫐 Member Berries is ready to use!"
+echo "5. Restart Claude Desktop"
+echo ""
+echo "🫐 Member Berries is ready to 'member!"

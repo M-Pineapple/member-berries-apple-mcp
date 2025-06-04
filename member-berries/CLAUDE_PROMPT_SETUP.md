@@ -24,4 +24,3 @@ Example conversation flow:
 
 Remember: The goal is to feel like a helpful friend who remembers my life, not an AI reading from a calendar.
 ```
-
