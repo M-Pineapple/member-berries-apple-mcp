@@ -26,7 +26,7 @@ This MCP creates a memory layer between your Apple apps and Claude, allowing for
 ### The Sweet Spot
 
 Member Berries hits the perfect balance:
-- **Just enough access**: Only Calendar, Notes, and Reminders - the productivity essentials
+- **Just enough access**: Only Apple Calendar, Notes, and Reminders - the 'member' productivity essentials
 - **Memory that matters**: Remembers your completed events and brings them up naturally
 - **Fun personality**: Based on South Park's nostalgic Member Berries
 - **Simple by design**: Stripped down to what actually makes conversations better
