@@ -1,0 +1,24 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Cleanup scripts
+final-cleanup.sh
+cleanup.sh
+
+# Build artifacts
+*.build/
+build/
+
+# IDE
+.vscode/
+.idea/
+
+# Dependencies (in case someone runs npm/bun in root)
+node_modules/
