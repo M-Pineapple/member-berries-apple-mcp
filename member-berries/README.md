@@ -4,7 +4,7 @@ A friendly, conversational MCP that remembers your activities and creates natura
 
 ## What Makes Member Berries Special?
 
-Unlike other MCPs that just access your data, Member Berries **remembers** what you've done and brings it up naturally in conversation:
+Unlike other MCPs, Member Berries **remembers** what you've done and brings it up naturally in conversation:
 
 - 📅 **"How did your dentist appointment go yesterday?"**
 - 🛒 **"Did you manage to get those eggs from the store?"**
@@ -120,8 +120,6 @@ For the full experience, add the Member Berries prompt to your Claude preference
 
 Member Berries takes a balanced approach:
 - ✅ **Yes**, Claude can see your calendar, notes, and reminders
-- ❌ **No**, Claude cannot access messages, emails, or contacts
-- ❌ **No**, Claude cannot browse the web or send data anywhere
 - ✅ **Yes**, memories are stored locally in `~/.member-berries-memory.json`
 
 ## Contributing
