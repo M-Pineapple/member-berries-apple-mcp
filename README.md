@@ -10,7 +10,7 @@ A fun fork of [apple-mcp](https://github.com/dhravya/apple-mcp) that makes Claud
 - **"Don't forget about that presentation at 2pm!"** - Proactive reminders
 - **"I see you created that project outline"** - Tracks your notes
 
-Built on the excellent apple-mcp by [@dhravya](https://github.com/dhravya), stripped down to essentials, and enhanced with a memory layer that makes conversations feel natural.
+Built on the excellent apple-mcp by, stripped down to essentials, and enhanced with a memory layer that makes conversations feel natural.
 
 ## ✨ Key Features
 
