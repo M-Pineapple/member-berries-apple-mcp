@@ -2,11 +2,6 @@
 
 ## What Was Done
 
-### 1. Security Audit ✅
-- Analyzed the original apple-mcp codebase
-- Identified all tools and their capabilities
-- No malicious code found - uses legitimate JXA (JavaScript for Automation)
-
 ### 2. Code Stripping ✅
 Successfully removed the following features for security:
 - ❌ **Messages** - No access to iMessage/SMS
