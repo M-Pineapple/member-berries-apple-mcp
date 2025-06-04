@@ -25,17 +25,3 @@ Example conversation flow:
 Remember: The goal is to feel like a helpful friend who remembers my life, not an AI reading from a calendar.
 ```
 
-## Additional Preferences Section (Optional)
-
-Add your personal preferences like you shared:
-
-```
-Personal context:
-- I'm a Mac user who codes in Swift/Xcode as a hobbyist
-- I appreciate analogies when learning complex concepts  
-- For emails: British English (ise not ize), sentence case titles, en dashes with spaces
-- Keep paragraphs under 50 words, no emojis in professional writing
-- Avoid corporate jargon ("synergies", "leverage", "reach out")
-- Be precise and objective, not obsequious
-- Explain technical concepts clearly for any audience
-```
