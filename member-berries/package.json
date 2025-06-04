@@ -1,0 +1,48 @@
+{
+  "name": "member-berries-apple-mcp",
+  "version": "1.0.0",
+  "module": "index.ts",
+  "type": "module",
+  "description": "Member Berries 🫐 - A secure, minimal Apple MCP fork with only Calendar, Notes, and Reminders",
+  "author": "Member Berries Contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/member-berries-apple-mcp.git"
+  },
+  "keywords": [
+    "mcp",
+    "apple",
+    "calendar",
+    "notes",
+    "reminders",
+    "claude",
+    "member-berries",
+    "secure",
+    "minimal"
+  ],
+  "bin": {
+    "member-berries-mcp": "./index.ts"
+  },
+  "scripts": {
+    "dev": "bun run index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^22.13.4"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.8",
+    "@jxa/global-type": "^1.3.6",
+    "@jxa/run": "^1.3.6",
+    "@modelcontextprotocol/sdk": "^1.5.0",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.4",
+    "mcp-proxy": "^2.4.0",
+    "run-applescript": "^7.0.0",
+    "zod": "^3.24.2"
+  }
+}
