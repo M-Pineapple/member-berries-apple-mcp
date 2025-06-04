@@ -4,7 +4,9 @@ A friendly, conversational MCP that remembers your activities and creates natura
 
 ## What is Member Berries?
 
-Member Berries is a secure, minimal fork of [apple-mcp](https://github.com/dhravya/apple-mcp) that:
+Member Berries is a privacy-conscious fork of the excellent [apple-mcp](https://github.com/dhravya/apple-mcp) by Dhravya Shah. We took the original MCP and stripped it down to only the essential productivity tools, giving it a fun twist with the Member Berries theme - because 'member when apps only asked for what they needed? We 'member!
+
+Member Berries is a secure, minimal fork that:
 - **Remembers** your calendar events, notes, and reminders
 - **Creates** natural conversation starters based on your activities
 - **Maintains** context between conversations

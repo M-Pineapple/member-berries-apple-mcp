@@ -51,7 +51,7 @@ This MCP creates a memory layer between your Apple apps and Claude, allowing for
 
 1. Clone and install:
 ```bash
-git clone https://github.com/your-username/member-berries-apple-mcp.git
+git clone https://github.com/pineapple/member-berries-apple-mcp.git
 cd member-berries-apple-mcp/member-berries
 bun install
 ```
