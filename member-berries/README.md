@@ -141,6 +141,52 @@ We welcome contributions that enhance the conversational experience! Ideas:
 - Pattern recognition for regular events
 - Integration with more Apple apps (while maintaining security)
 
+## Technical Details
+
+### What's Different from apple-mcp?
+
+| Feature | apple-mcp | Member Berries | 
+|---------|-----------|----------------|
+| Calendar | ✅ | ✅ + Memory Layer |
+| Notes | ✅ | ✅ + Memory Layer |
+| Reminders | ✅ | ✅ + Memory Layer |
+| Messages | ✅ | ❌ |
+| Mail | ✅ | ❌ |
+| Contacts | ✅ | ❌ |
+| Web Search | ✅ | ❌ |
+| Maps | ✅ | ❌ |
+| **Memory System** | ❌ | ✅ |
+
+### File Structure
+```
+member-berries/
+├── index.ts          # Main MCP server
+├── tools.ts          # Tool definitions
+├── memory/
+│   └── MemberBerriesMemory.ts  # The magic memory layer
+├── utils/
+│   ├── calendar.ts   # Calendar integration
+│   ├── notes.ts      # Notes integration (default folder: "Member Berries")
+│   └── reminders.ts  # Reminders integration
+├── package.json      # Dependencies
+├── install.sh        # Installation helper
+└── CLAUDE_PROMPT_SETUP.md  # Critical for the full experience
+```
+
+### Requirements
+
+- **macOS** (required - uses Apple's native apps)
+- **Bun runtime** (for performance)
+- **Claude Desktop**
+- **Permissions**: Calendar, Notes, and Reminders access (prompted on first use)
+
+### Memory Storage
+
+- Memories are stored locally in `~/.member-berries-memory.json`
+- Retains events for 7 days
+- Maximum 50 memories at a time
+- Completely local - no cloud sync
+
 ## License
 
 MIT License - See LICENSE file

@@ -1,45 +1,58 @@
-# Member Berries Apple MCP 🫐
+# 🫐 Member Berries Apple MCP
 
-A friendly, conversational MCP that remembers your activities and creates natural interactions with Claude.
+Give Claude memory of your Apple Calendar, Notes & Reminders - with personality!
 
 ## What is Member Berries?
 
-Member Berries is a privacy-conscious fork of the excellent [apple-mcp](https://github.com/dhravya/apple-mcp) by Dhravya Shah. We took the original MCP and stripped it down to only the essential productivity tools, giving it a fun twist with the Member Berries theme - because 'member when apps only asked for what they needed? We 'member!
+A fun fork of [apple-mcp](https://github.com/dhravya/apple-mcp) that makes Claude feel like a helpful friend who actually remembers your day:
 
-Member Berries is a secure, minimal fork that:
-- **Remembers** your calendar events, notes, and reminders
-- **Creates** natural conversation starters based on your activities
-- **Maintains** context between conversations
-- **Protects** your privacy by limiting access to only essential apps
+- **"How did your dentist appointment go?"** - Remembers completed events
+- **"Don't forget about that presentation at 2pm!"** - Proactive reminders
+- **"I see you created that project outline"** - Tracks your notes
 
-## Quick Start
+Built on the excellent apple-mcp by [@dhravya](https://github.com/dhravya), stripped down to essentials, and enhanced with a memory layer that makes conversations feel natural.
 
-1. Install Bun: `brew install bun`
-2. Clone this repo
-3. Run `cd member-berries && bun install`
-4. Configure Claude Desktop (see member-berries/README.md)
-5. **IMPORTANT**: Add the Member Berries personality prompt to Claude Desktop:
-   - Open Claude Desktop → Settings → Preferences → Custom Instructions
-   - Copy the prompt from `member-berries/CLAUDE_PROMPT_SETUP.md`
-   - This makes Claude actually use the memory features naturally!
+## ✨ Key Features
 
-## Features
+- **📅 Calendar Memory** - Knows what you've done and what's coming up
+- **📝 Notes Tracking** - Remembers what you've written
+- **✅ Reminders Integration** - Helps you stay on top of tasks
+- **🧠 Conversation Memory** - Brings up your activities naturally
+- **🎯 Focused Scope** - Only Calendar, Notes, and Reminders (no Messages/Mail/Contacts)
 
-- 📅 Calendar integration with event memory
-- 📝 Notes access with creation tracking
-- ✓ Reminders management
-- 🧠 Conversational memory layer
-- 💬 Natural conversation starters
-- 🔒 Privacy-first design (no Messages/Mail/Contacts access)
+## 🚀 Quick Start
 
-## Documentation
+```bash
+# Install Bun
+brew install bun
 
-See the `member-berries` folder for full documentation and setup instructions.
+# Clone and install
+git clone https://github.com/pineapple/member-berries-apple-mcp.git
+cd member-berries-apple-mcp/member-berries
+bun install
 
-## License
+# Follow the setup instructions
+./install.sh
+```
 
-MIT - See LICENSE file in member-berries folder
+Then add the custom prompt to Claude Desktop for the full experience!
+
+## 📖 Documentation
+
+See the [`member-berries`](./member-berries) folder for:
+- Detailed installation instructions
+- Configuration guide
+- Custom prompt setup (critical!)
+- Technical details
+
+## 🤝 Contributing
+
+Ideas for improvements? Check out the [contribution guidelines](./member-berries/README.md#contributing) in the main documentation.
+
+## 📄 License
+
+MIT - See [LICENSE](./member-berries/LICENSE)
 
 ---
 
-🫐 'Member when AI assistants felt like friends? Member Berries 'members!
+*🫐 'Member when AI assistants felt like friends? Member Berries 'members!*
