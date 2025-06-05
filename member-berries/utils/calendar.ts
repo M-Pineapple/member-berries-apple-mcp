@@ -19,16 +19,11 @@ const CONFIG = {
     TIMEOUT_MS: 8000,
     // Maximum number of events to process per calendar
     MAX_EVENTS_PER_CALENDAR: 50,
-<<<<<<< Updated upstream
-    // Maximum number of calendars to process
-    MAX_CALENDARS: 1
-=======
     // Maximum number of calendars to process  
     MAX_CALENDARS: 15,  // Increased to check all calendars
     // Time window settings
     PAST_DAYS: 14,     // Look back 2 weeks
     FUTURE_DAYS: 90    // Look forward 3 months
->>>>>>> Stashed changes
 };
 
 /**
@@ -331,22 +326,14 @@ async function searchEvents(
             limit: number, 
             fromDate?: string, 
             toDate?: string,
-<<<<<<< Updated upstream
-            maxEventsPerCalendar: number
-=======
             maxEventsPerCalendar: number,
             pastDays: number,
             futureDays: number
->>>>>>> Stashed changes
         }) => {
             try {
                 const Calendar = Application("Calendar");
                 
-<<<<<<< Updated upstream
-                // Set default date range if not provided (today to 30 days from now)
-=======
                 // Set default date range with time window
->>>>>>> Stashed changes
                 const today = new Date();
                 today.setHours(0, 0, 0, 0);
                 
@@ -371,11 +358,7 @@ async function searchEvents(
                         const calendar = allCalendars[i];
                         const calendarName = calendar.name();
                         
-<<<<<<< Updated upstream
-                        // Get all events from this calendar
-=======
                         // Get all events from this calendar using date filter
->>>>>>> Stashed changes
                         const events = calendar.events.whose({
                             _and: [
                                 { startDate: { _greaterThan: startDate }},
@@ -467,13 +450,9 @@ async function searchEvents(
             limit, 
             fromDate, 
             toDate,
-<<<<<<< Updated upstream
-            maxEventsPerCalendar: CONFIG.MAX_EVENTS_PER_CALENDAR
-=======
             maxEventsPerCalendar: CONFIG.MAX_EVENTS_PER_CALENDAR,
             pastDays: CONFIG.PAST_DAYS,
             futureDays: CONFIG.FUTURE_DAYS
->>>>>>> Stashed changes
         }) as CalendarEvent[];
         
         // If no events found, create dummy events
@@ -569,158 +548,7 @@ async function openEvent(eventId: string): Promise<{ success: boolean; message: 
 }
 
 /**
-<<<<<<< Updated upstream
- * Get all calendar events in a specified date range
- * @param limit Optional limit on the number of results (default 10)
- * @param fromDate Optional start date for search range in ISO format (default: today)
- * @param toDate Optional end date for search range in ISO format (default: 7 days from now)
- * @returns Array of calendar events in the specified date range
- */
-async function getEvents(
-    limit = 10, 
-    fromDate?: string, 
-    toDate?: string
-): Promise<CalendarEvent[]> {
-    try {
-        console.error("getEvents - Starting to fetch calendar events");
-        
-        if (!await checkCalendarAccess()) {
-            console.error("getEvents - Failed to access Calendar app");
-            return [];
-        }
-        console.error("getEvents - Calendar access check passed");
-
-        const events = await run((args: { 
-            limit: number, 
-            fromDate?: string, 
-            toDate?: string,
-            maxEventsPerCalendar: number
-        }) => {
-            try {
-                // Access the Calendar app directly
-                const Calendar = Application("Calendar");
-                
-                // Set default date range if not provided (today to 7 days from now)
-                const today = new Date();
-                const defaultStartDate = today;
-                const defaultEndDate = new Date();
-                defaultEndDate.setDate(today.getDate() + 7);
-                
-                const startDate = args.fromDate ? new Date(args.fromDate) : defaultStartDate;
-                const endDate = args.toDate ? new Date(args.toDate) : defaultEndDate;
-                
-                const calendars = Calendar.calendars();
-
-                // Array to store events
-                const events: CalendarEvent[] = [];
-                
-                // Get events from each calendar
-                for (const calender of calendars) {
-                    if (events.length >= args.limit) break;
-                    
-                    try {
-                        // Get all events from this calendar
-                        const calendarEvents = calender.events.whose({
-                            _and: [
-                                { startDate: { _greaterThan: startDate }},
-                                { endDate: { _lessThan: endDate}}
-                            ]
-                        });
-                        const convertedEvents = calendarEvents();
-                        
-                        // Limit the number of events to process
-                        const eventCount = Math.min(convertedEvents.length, args.maxEventsPerCalendar);
-                        
-                        // Process events
-                        for (let i = 0; i < eventCount && events.length < args.limit; i++) {
-                            const event = convertedEvents[i];
-                            
-                            try {
-                                const eventStartDate = new Date(event.startDate());
-                                const eventEndDate = new Date(event.endDate());
-                                
-                                // Skip events outside our date range
-                                if (eventEndDate < startDate || eventStartDate > endDate) {
-                                    continue;
-                                }
-                                
-                                // Create event object
-                                const eventData: CalendarEvent = {
-                                    id: "",
-                                    title: "Unknown Title",
-                                    location: null,
-                                    notes: null,
-                                    startDate: null,
-                                    endDate: null,
-                                    calendarName: calender.name(),
-                                    isAllDay: false,
-                                    url: null
-                                };
-                                
-                                try { eventData.id = event.uid(); } 
-                                catch (e) { eventData.id = `unknown-${Date.now()}-${Math.random()}`; }
-                                
-                                try { eventData.title = event.summary(); } 
-                                catch (e) { /* Keep default title */ }
-                                
-                                try { eventData.location = event.location(); } 
-                                catch (e) { /* Keep as null */ }
-                                
-                                try { eventData.notes = event.description(); } 
-                                catch (e) { /* Keep as null */ }
-                                
-                                try { eventData.startDate = eventStartDate.toISOString(); } 
-                                catch (e) { /* Keep as null */ }
-                                
-                                try { eventData.endDate = eventEndDate.toISOString(); } 
-                                catch (e) { /* Keep as null */ }
-                                
-                                try { eventData.isAllDay = event.alldayEvent(); } 
-                                catch (e) { /* Keep as false */ }
-                                
-                                try { eventData.url = event.url(); } 
-                                catch (e) { /* Keep as null */ }
-                                
-                                events.push(eventData);
-                            } catch (e) {
-                                // Skip events we can't process
-                            }
-                        }
-                    } catch (e) {
-                        // Skip calendars we can't access
-                        console.log("getEvents - Error processing events: ----0----", JSON.stringify(e));
-                    }
-                }
-                return events;
-            } catch (e) {
-                console.log("getEvents - Error processing events: ----1----", JSON.stringify(e));
-                return []; // Return empty array on any error
-            }
-        }, { 
-            limit, 
-            fromDate, 
-            toDate,
-            maxEventsPerCalendar: CONFIG.MAX_EVENTS_PER_CALENDAR
-        }) as CalendarEvent[];
-        
-        // If no events found, create dummy events
-        if (events.length === 0) {
-            console.error("getEvents - No events found, creating dummy events");
-            return [];
-        }
-        
-        return events;
-    } catch (error) {
-        console.error(`Error getting events: ${error instanceof Error ? error.message : String(error)}`);
-        return [];
-    }
-}
-
-/**
- * Create a new calendar event
-=======
  * Create a new calendar event - UNCHANGED
->>>>>>> Stashed changes
  * @param title Title of the event
  * @param startDate Start date/time in ISO format
  * @param endDate End date/time in ISO format
