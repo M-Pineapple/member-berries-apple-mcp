@@ -1,6 +1,6 @@
 {
   "name": "member-berries-apple-mcp",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "module": "index.ts",
   "type": "module",
   "description": "Member Berries 🫐 - A secure, minimal Apple MCP fork with only Calendar, Notes, and Reminders",
