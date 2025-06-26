@@ -49,7 +49,7 @@ See the [`member-berries`](./member-berries) folder for:
 
 If Member Berries has made Claude feel more like a helpful friend who remembers your day, consider buying me a coffee:
 
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/mpineapple)
+<a href="https://www.buymeacoffee.com/mpineapple" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
 Your support helps me:
 - Keep Member Berries updated with new Apple integrations
