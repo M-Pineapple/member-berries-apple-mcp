@@ -2,6 +2,36 @@
 
 All notable changes to Member Berries Apple MCP will be documented in this file.
 
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [2.1.0] - 2026-08-02
+
+### Added
+- Product logo (`assets/logo.svg`) and CPC-style README packaging
+- `briefing` tool (`today`) — calendar, due reminders, note titles, starters
+- Reminders `complete` and `delete` operations
+- Notes `get` operation, `includeBody` flag, folder scoping on list/search
+- Built-in conversation starters (custom host prompt now optional)
+- Bun unit tests and GitHub Actions CI
+- Root `LICENSE`, `AGENTS.md`, `CLAUDE.md`
+
+### Fixed
+- Clone / package URLs now point at `M-Pineapple/member-berries-apple-mcp`
+- Version pin: package and server both **2.1.0** (was 1.2.0 vs 2.0.0)
+- `listById` now filters by list ID (no longer returns every reminder)
+- Notes list/search default to title + snippet (no full-body dump)
+- Memory file written with mode `0o600`
+- Access failures surface clear errors instead of silent empty arrays
+- Input length limits on tool string arguments
+- Removed personal calendar name from priority list
+- `rememberReminder` records `reminder_created` (not completed)
+
+### Changed
+- Slimmed calendar module (shared event walker, stderr-only diagnostics)
+- Dropped unused dependencies (`mcp-proxy`, `@hono/node-server`, `run-applescript`, …)
+- Removed tracked `.DS_Store` and `calendar.ts.original-backup`
+
 ## [1.2.0] - 2025-06-05
 
 ### Fixed
@@ -20,18 +50,6 @@ All notable changes to Member Berries Apple MCP will be documented in this file.
 - All operations return empty arrays on failure instead of throwing errors
 - Increased timeout from 5s to handle large reminder lists
 
-### Performance Improvements
-Tested with 70 reminders:
-- Get all reminders: ~10-12s (first time), 0ms (cached)
-- Search reminders: ~47s → <1ms
-- Get incomplete: ~105s → <1ms
-
-### Technical Details
-- JXA `.whose()` filtering is extremely slow for large datasets
-- Bulk property access (e.g., `reminders.name()`) is much faster than individual access
-- Cache implementation prevents repeated expensive operations
-- No forced app activation prevents macOS from triggering restart loops
-
 ## [1.1.0] - 2025-06-05
 
 ### Fixed
@@ -40,22 +58,9 @@ Tested with 70 reminders:
 - Performance issues when checking calendars with extensive historical data
 
 ### Added
-- Time-window filtering for calendar operations:
-  - Default looks back 14 days for context
-  - Default looks forward 90 days for future planning
-  - Significantly improves performance by reducing events to process
-- Priority calendar processing - checks main calendars first (Home, Work, Calendar, iCloud)
+- Time-window filtering for calendar operations
+- Priority calendar processing for main calendars first
 - Configurable time window settings in CONFIG object
-
-### Changed
-- Increased MAX_CALENDARS from 1 to 15 to support users with multiple calendars
-- Improved calendar access logic to handle large event counts gracefully
-- Calendar operations now filter events by date range before processing
-
-### Technical Details
-- Original timeout handling with Promise.race was causing read operations to fail
-- Restored original JXA execution logic while adding minimal date filtering
-- Time-window approach reduces processed events from thousands to ~100-200
 
 ## [1.0.0] - 2025-06-04
 

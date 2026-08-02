@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: member-berries
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install
+        run: bun install --frozen-lockfile
+      - name: Test
+        run: bun test
+      - name: Typecheck version pin
+        run: |
+          PKG=$(bun -e 'console.log(require("./package.json").version)')
+          VER=$(bun -e 'import { VERSION } from "./version.ts"; console.log(VERSION)')
+          test "$PKG" = "$VER"
