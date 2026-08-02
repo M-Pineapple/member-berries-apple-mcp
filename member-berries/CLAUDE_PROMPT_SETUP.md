@@ -1,6 +1,8 @@
-# 🫐 Member Berries Custom Prompt
+# Member Berries custom prompt (optional)
 
-To get the full Member Berries experience, add this to your Claude preferences (Settings → Preferences → Custom Instructions):
+From v2.1.0 the server ships built-in conversation starters, so this prompt is an **enhancement**, not a requirement.
+
+To deepen the personality, add this to your host custom instructions:
 
 ```
 When using Member Berries MCP, I want you to:

@@ -3,10 +3,12 @@
 .AppleDouble
 .LSOverride
 
-# Temporary files
+# Temporary / backup files
 *.tmp
 *.temp
 *.log
+*.original-backup
+*~
 
 # Cleanup scripts
 final-cleanup.sh
@@ -15,10 +17,19 @@ cleanup.sh
 # Build artifacts
 *.build/
 build/
+dist/
 
 # IDE
 .vscode/
 .idea/
 
-# Dependencies (in case someone runs npm/bun in root)
+# Dependencies
 node_modules/
+
+# Local Member Berries runtime memory (never commit)
+.member-berries-memory.json
+*.member-berries-memory.json
+
+# Env / secrets
+.env
+.env.*

@@ -34,7 +34,7 @@ fi
 CURRENT_DIR=$(pwd)
 
 echo ""
-echo "🎉 Installation complete!"
+echo "Installation complete!"
 echo ""
 echo "To add Member Berries to Claude Desktop:"
 echo "1. Open Claude Desktop"
@@ -50,11 +50,9 @@ echo '    }'
 echo '  }'
 echo '}'
 echo ""
-echo "4. ⚠️  IMPORTANT: Add the Member Berries personality prompt!"
-echo "   - Go to Settings → Preferences → Custom Instructions"
-echo "   - Copy the prompt from CLAUDE_PROMPT_SETUP.md"
-echo "   - This is CRITICAL for the Member Berries experience!"
+echo "4. Optional: paste CLAUDE_PROMPT_SETUP.md into Custom Instructions"
+echo "   (Built-in conversation starters work without it.)"
 echo ""
 echo "5. Restart Claude Desktop"
 echo ""
-echo "🫐 Member Berries is ready to 'member!"
+echo "Member Berries is ready to 'member!"

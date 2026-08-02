@@ -1,20 +1,23 @@
 import { run } from "@jxa/run";
+import { AppleAccessError } from "./errors";
+import {
+  filterRemindersByListId,
+  filterRemindersDueToday,
+} from "./remindersFormat";
 
-// Production-ready Reminders implementation that prevents restart loops
-// Fixes issues #26, #27 in the original apple-mcp repository
-
-interface ReminderList {
+export interface ReminderList {
   name: string;
   id: string;
 }
 
-interface Reminder {
+export interface Reminder {
   name: string;
   id: string;
   body: string;
   completed: boolean;
   dueDate: string | null;
   listName: string;
+  listId: string;
   completionDate?: string | null;
   creationDate?: string | null;
   modificationDate?: string | null;
@@ -22,47 +25,46 @@ interface Reminder {
   priority?: number;
 }
 
-// Cache for performance with large reminder lists
+export { filterRemindersByListId, filterRemindersDueToday };
+
 class ReminderCache {
   private cache: Reminder[] | null = null;
-  private cacheTime: number = 0;
-  private readonly cacheDuration = 30000; // 30 second cache
-  
+  private cacheTime = 0;
+  private readonly cacheDuration = 30000;
+
   async getAll(): Promise<Reminder[]> {
     const now = Date.now();
-    if (!this.cache || (now - this.cacheTime) > this.cacheDuration) {
+    if (!this.cache || now - this.cacheTime > this.cacheDuration) {
       this.cache = await this.fetchAll();
       this.cacheTime = now;
     }
     return this.cache;
   }
-  
+
   private async fetchAll(): Promise<Reminder[]> {
     return await run(() => {
       const Reminders = Application("Reminders");
       const lists = Reminders.lists();
       const allReminders: Reminder[] = [];
-      
+
       for (let i = 0; i < lists.length; i++) {
         const list = lists[i];
         const listName = list.name();
+        const listId = list.id();
         const reminders = list.reminders;
-        
-        // Bulk property access - much faster than individual access
+
         const names = reminders.name();
         const ids = reminders.id();
         const bodies = reminders.body();
         const completed = reminders.completed();
-        
-        // Handle dates carefully as they might all be null
+
         let dueDates: any[] = [];
         try {
           dueDates = reminders.dueDate();
         } catch {
           dueDates = new Array(names.length).fill(null);
         }
-        
-        // Build reminder objects
+
         for (let j = 0; j < names.length; j++) {
           allReminders.push({
             name: names[j],
@@ -70,27 +72,23 @@ class ReminderCache {
             body: bodies[j] || "",
             completed: completed[j],
             dueDate: dueDates[j] ? dueDates[j].toISOString() : null,
-            listName: listName
+            listName: listName,
+            listId: listId,
           });
         }
       }
-      
+
       return allReminders;
     });
   }
-  
+
   clearCache(): void {
     this.cache = null;
   }
 }
 
-// Global cache instance
 const cache = new ReminderCache();
 
-/**
- * Check if Reminders app is running without activating it
- * CRITICAL: This prevents the restart loop issue
- */
 async function isRemindersRunning(): Promise<boolean> {
   try {
     return await run(() => {
@@ -103,107 +101,82 @@ async function isRemindersRunning(): Promise<boolean> {
   }
 }
 
-/**
- * Get all reminder lists
- */
-async function getAllLists(): Promise<ReminderList[]> {
-  try {
-    // Check if app is running - prevents restart loops
-    if (!await isRemindersRunning()) {
-      console.error("Reminders app is not running. Please open it first.");
-      return [];
-    }
+async function requireRemindersRunning(): Promise<void> {
+  if (!(await isRemindersRunning())) {
+    throw new AppleAccessError(
+      "Reminders",
+      "Reminders app is not running. Please open it first."
+    );
+  }
+}
 
+async function getAllLists(): Promise<ReminderList[]> {
+  await requireRemindersRunning();
+  try {
     const lists = await run(() => {
       const Reminders = Application("Reminders");
       const lists = Reminders.lists();
-      
       return lists.map((list: any) => ({
         name: list.name(),
         id: list.id(),
       }));
     });
-
     return lists as ReminderList[];
   } catch (error) {
-    console.error("Error getting lists:", error);
-    return [];
+    throw new AppleAccessError(
+      "Reminders",
+      error instanceof Error ? error.message : String(error)
+    );
   }
 }
 
-/**
- * Get all reminders with caching for performance
- */
 async function getAllReminders(listName?: string): Promise<Reminder[]> {
+  await requireRemindersRunning();
   try {
-    // Check if app is running
-    if (!await isRemindersRunning()) {
-      console.error("Reminders app is not running. Please open it first.");
-      return [];
-    }
-
     const allReminders = await cache.getAll();
-    
-    // Filter by list name if provided
     if (listName) {
-      return allReminders.filter(r => r.listName === listName);
+      return allReminders.filter((r) => r.listName === listName);
     }
-    
     return allReminders;
   } catch (error) {
-    console.error("Error getting reminders:", error);
-    return [];
-  }
-}
-
-/**
- * Search reminders using fast JavaScript filtering instead of slow JXA
- */
-async function searchReminders(searchText: string): Promise<Reminder[]> {
-  try {
-    // Check if app is running
-    if (!await isRemindersRunning()) {
-      console.error("Reminders app is not running. Please open it first.");
-      return [];
-    }
-
-    const allReminders = await cache.getAll();
-    const lower = searchText.toLowerCase();
-    
-    return allReminders.filter(r => 
-      r.name.toLowerCase().includes(lower) || 
-      r.body.toLowerCase().includes(lower)
+    if (error instanceof AppleAccessError) throw error;
+    throw new AppleAccessError(
+      "Reminders",
+      error instanceof Error ? error.message : String(error)
     );
-  } catch (error) {
-    console.error("Error searching reminders:", error);
-    return [];
   }
 }
 
-/**
- * Create a new reminder
- * CRITICAL: No app activation to prevent restart loops
- */
+async function searchReminders(searchText: string): Promise<Reminder[]> {
+  await requireRemindersRunning();
+  const allReminders = await cache.getAll();
+  const lower = searchText.toLowerCase();
+  return allReminders.filter(
+    (r) =>
+      r.name.toLowerCase().includes(lower) ||
+      r.body.toLowerCase().includes(lower)
+  );
+}
+
 async function createReminder(
   name: string,
   listName: string = "Reminders",
   notes?: string,
   dueDate?: string
 ): Promise<Reminder> {
+  await requireRemindersRunning();
   try {
-    // Check if app is running
-    if (!await isRemindersRunning()) {
-      throw new Error("Reminders app is not running. Please open it first.");
-    }
-
     const result = await run(
-      (name: string, listName: string, notes: string | undefined, dueDate: string | undefined) => {
+      (
+        name: string,
+        listName: string,
+        notes: string | undefined,
+        dueDate: string | undefined
+      ) => {
         const Reminders = Application("Reminders");
-        
-        // Find or create the list
         let list;
         const existingLists = Reminders.lists.whose({ name: listName })();
-        
+
         if (existingLists.length > 0) {
           list = existingLists[0];
         } else {
@@ -212,25 +185,26 @@ async function createReminder(
             withProperties: { name: listName },
           });
         }
-        
-        // Create reminder properties
+
         const reminderProps: any = { name: name };
         if (notes) reminderProps.body = notes;
         if (dueDate) reminderProps.dueDate = new Date(dueDate);
-        
-        // Create the reminder
+
         const newReminder = list.make({
           new: "reminder",
           withProperties: reminderProps,
         });
-        
+
         return {
           name: newReminder.name(),
           id: newReminder.id(),
           body: newReminder.body() || "",
           completed: newReminder.completed(),
-          dueDate: newReminder.dueDate() ? newReminder.dueDate().toISOString() : null,
+          dueDate: newReminder.dueDate()
+            ? newReminder.dueDate().toISOString()
+            : null,
           listName: list.name(),
+          listId: list.id(),
         };
       },
       name,
@@ -238,8 +212,7 @@ async function createReminder(
       notes,
       dueDate
     );
-    
-    // Clear cache after creating
+
     cache.clearCache();
     return result as Reminder;
   } catch (error) {
@@ -248,30 +221,15 @@ async function createReminder(
   }
 }
 
-/**
- * Open reminder WITHOUT forcing app activation
- * CRITICAL: Returns data only, doesn't activate app to prevent loops
- */
-async function openReminder(searchText: string): Promise<{success: boolean; message: string; reminder?: Reminder}> {
+async function openReminder(
+  searchText: string
+): Promise<{ success: boolean; message: string; reminder?: Reminder }> {
   try {
-    // Check if app is running
-    if (!await isRemindersRunning()) {
-      return { 
-        success: false, 
-        message: "Reminders app is not running. Please open it first." 
-      };
-    }
-
+    await requireRemindersRunning();
     const matchingReminders = await searchReminders(searchText);
-    
     if (matchingReminders.length === 0) {
-      return { 
-        success: false, 
-        message: "No matching reminders found" 
-      };
+      return { success: false, message: "No matching reminders found" };
     }
-    
-    // Return the first match WITHOUT forcing app activation
     return {
       success: true,
       message: "Found reminder",
@@ -280,27 +238,112 @@ async function openReminder(searchText: string): Promise<{success: boolean; mess
   } catch (error) {
     return {
       success: false,
-      message: `Error: ${error instanceof Error ? error.message : String(error)}`
+      message: `Error: ${error instanceof Error ? error.message : String(error)}`,
     };
   }
 }
 
-/**
- * Get reminders from list by ID
- */
-async function getRemindersFromListById(listId: string, props?: string[]): Promise<any[]> {
+async function getRemindersFromListById(
+  listId: string,
+  _props?: string[]
+): Promise<Reminder[]> {
+  await requireRemindersRunning();
   try {
-    // For now, return all reminders since we don't track list IDs in cache
-    // This maintains compatibility while using the fast approach
-    const allReminders = await getAllReminders();
-    return allReminders;
+    const allReminders = await cache.getAll();
+    return filterRemindersByListId(allReminders, listId);
   } catch (error) {
-    console.error("Error getting reminders by list ID:", error);
-    return [];
+    if (error instanceof AppleAccessError) throw error;
+    throw new AppleAccessError(
+      "Reminders",
+      error instanceof Error ? error.message : String(error)
+    );
   }
 }
 
-// Export with backward compatibility
+async function completeReminder(
+  reminderId: string
+): Promise<{ success: boolean; message: string; reminder?: Reminder }> {
+  await requireRemindersRunning();
+  try {
+    const result = await run((reminderId: string) => {
+      const Reminders = Application("Reminders");
+      const lists = Reminders.lists();
+      for (let i = 0; i < lists.length; i++) {
+        const list = lists[i];
+        const matches = list.reminders.whose({ id: { _equals: reminderId } })();
+        if (matches.length > 0) {
+          const reminder = matches[0];
+          reminder.completed = true;
+          return {
+            success: true,
+            message: `Completed reminder: ${reminder.name()}`,
+            reminder: {
+              name: reminder.name(),
+              id: reminder.id(),
+              body: reminder.body() || "",
+              completed: true,
+              dueDate: reminder.dueDate()
+                ? reminder.dueDate().toISOString()
+                : null,
+              listName: list.name(),
+              listId: list.id(),
+            },
+          };
+        }
+      }
+      return {
+        success: false,
+        message: `No reminder found with ID: ${reminderId}`,
+      };
+    }, reminderId);
+
+    cache.clearCache();
+    return result as { success: boolean; message: string; reminder?: Reminder };
+  } catch (error) {
+    return {
+      success: false,
+      message: `Error completing reminder: ${error instanceof Error ? error.message : String(error)}`,
+    };
+  }
+}
+
+async function deleteReminder(
+  reminderId: string
+): Promise<{ success: boolean; message: string }> {
+  await requireRemindersRunning();
+  try {
+    const result = await run((reminderId: string) => {
+      const Reminders = Application("Reminders");
+      const lists = Reminders.lists();
+      for (let i = 0; i < lists.length; i++) {
+        const list = lists[i];
+        const matches = list.reminders.whose({ id: { _equals: reminderId } })();
+        if (matches.length > 0) {
+          const reminder = matches[0];
+          const name = reminder.name();
+          Reminders.delete(reminder);
+          return {
+            success: true,
+            message: `Deleted reminder: ${name}`,
+          };
+        }
+      }
+      return {
+        success: false,
+        message: `No reminder found with ID: ${reminderId}`,
+      };
+    }, reminderId);
+
+    cache.clearCache();
+    return result as { success: boolean; message: string };
+  } catch (error) {
+    return {
+      success: false,
+      message: `Error deleting reminder: ${error instanceof Error ? error.message : String(error)}`,
+    };
+  }
+}
+
 export default {
   getAllLists,
   getAllReminders,
@@ -308,8 +351,10 @@ export default {
   createReminder,
   openReminder,
   getRemindersFromListById,
-  
-  // Additional utility functions
+  completeReminder,
+  deleteReminder,
+  filterRemindersByListId,
+  filterRemindersDueToday,
   isRemindersRunning,
   clearCache: () => cache.clearCache(),
 };

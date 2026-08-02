@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="400" viewBox="0 0 400 400"
+     xmlns="http://www.w3.org/2000/svg"
+     role="img"
+     aria-label="Member Berries  Apple day-memory MCP">
+  <title>Member Berries</title>
+
+  <defs>
+    <linearGradient id="slate" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="berry" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="55%" stop-color="#4f46e5"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="berry-light" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="42%" r="45%">
+      <stop offset="0%" stop-color="#c4b5fd" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="leaf" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#86efac"/>
+      <stop offset="100%" stop-color="#22c55e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Canvas -->
+  <rect width="400" height="400" rx="48" fill="url(#slate)"/>
+  <circle cx="200" cy="190" r="150" fill="url(#glow)"/>
+
+  <!-- Soft window chrome (CPC family cue) -->
+  <rect x="48" y="48" width="304" height="304" rx="28"
+        fill="#111827" stroke="#334155" stroke-width="2"/>
+  <rect x="48" y="48" width="304" height="36" rx="28" fill="#1e293b"/>
+  <rect x="48" y="66" width="304" height="18" fill="#1e293b"/>
+  <circle cx="72" cy="66" r="5" fill="#f87171"/>
+  <circle cx="90" cy="66" r="5" fill="#fbbf24"/>
+  <circle cx="108" cy="66" r="5" fill="#4ade80"/>
+
+  <!-- Berry cluster -->
+  <g transform="translate(200 210)">
+    <!-- stem -->
+    <path d="M0,-78 C8,-100 22,-108 36,-112" fill="none"
+          stroke="#4ade80" stroke-width="6" stroke-linecap="round"/>
+    <path d="M8,-96 C18,-108 34,-118 48,-116 C28,-104 16,-96 8,-96Z"
+          fill="url(#leaf)"/>
+
+    <!-- berries -->
+    <circle cx="-42" cy="-8" r="38" fill="url(#berry)"/>
+    <circle cx="42" cy="-4" r="40" fill="url(#berry)"/>
+    <circle cx="0" cy="36" r="44" fill="url(#berry-light)"/>
+    <circle cx="-8" cy="-48" r="34" fill="url(#berry)"/>
+
+    <!-- highlight dots -->
+    <circle cx="-54" cy="-22" r="7" fill="#ede9fe" opacity="0.55"/>
+    <circle cx="28" cy="-18" r="6" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="-18" cy="24" r="8" fill="#eef2ff" opacity="0.45"/>
+    <circle cx="-18" cy="-58" r="5" fill="#f5f3ff" opacity="0.5"/>
+
+    <!-- tiny seed dots -->
+    <circle cx="-36" cy="2" r="2.5" fill="#312e81" opacity="0.45"/>
+    <circle cx="50" cy="10" r="2.5" fill="#312e81" opacity="0.45"/>
+    <circle cx="8" cy="48" r="2.5" fill="#312e81" opacity="0.4"/>
+    <circle cx="0" cy="-40" r="2.5" fill="#312e81" opacity="0.4"/>
+  </g>
+
+  <!-- Wordmark cue -->
+  <text x="200" y="350" text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="22" font-weight="700" fill="#e2e8f0"
+        letter-spacing="1">Member Berries</text>
+</svg>
