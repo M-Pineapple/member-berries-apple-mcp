@@ -14,7 +14,8 @@ Apple CRUD stays good-enough. Do not sprawl into Mail, Messages, Contacts, or Me
 - Public identity is **Pineapple / M-Pineapple**. No real names, home paths, or personal calendar names in source.
 - No money-path / trading code in this repo.
 - Keep the Buy Me a Coffee CTA (`mpineapple`) in README rewrites.
-- Keep `assets/logo.svg` as the product mark.
+- Keep `assets/logo.svg` (source) and `assets/logo.png` (README mark). README should use the PNG so GitHub renders it.
+- Product tone is fun and personality-first; name pays homage to South Park’s Member Berries (state no affiliation).
 
 ## Version
 

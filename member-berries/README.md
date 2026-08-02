@@ -2,6 +2,8 @@
 
 Runnable Bun package for the Member Berries Apple MCP server.
 
+Named in homage to South Park’s Member Berries — a fun, personality-first day-memory layer on Calendar / Notes / Reminders. Not affiliated with South Park or Comedy Central.
+
 ## Install
 
 ```bash

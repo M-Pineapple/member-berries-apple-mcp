@@ -1,16 +1,34 @@
 <div align="center">
 
-<img src="assets/logo.svg" alt="Member Berries logo" width="240"/>
+<img src="assets/logo.png" alt="Member Berries logo" width="240"/>
 
 # Member Berries
 
-**Your friendly Apple day-memory for Claude.** Calendar, Notes, and Reminders — with a local memory layer that makes conversations feel natural.
+**'Member when AI assistants felt like friends?**  
+Member Berries 'members.
+
+Give Claude memory of your Apple Calendar, Notes & Reminders — with personality.
 
 </div>
 
-Member Berries is a macOS MCP server. It gives Claude (or Cursor / Claude Code) focused access to Apple Calendar, Notes, and Reminders, plus a small on-disk memory of what you did today. Data stays on your machine.
+A fun macOS MCP that makes Claude feel like a helpful friend who actually remembers your day. Named in **homage to South Park’s Member Berries** — those nostalgic little berries that go *“'Member …?”* — this server brings that same playful “remember when…” energy to your calendar, notes, and reminders.
 
-**v2.1.0** · [MCP](https://modelcontextprotocol.io) · MIT · Bun
+Not affiliated with South Park or Comedy Central. Just a wink, a berry cluster, and a local memory file.
+
+**v2.1.0** · [MCP](https://modelcontextprotocol.io) · MIT · Bun · data stays on your Mac
+
+---
+
+## What is Member Berries?
+
+A personality-first fork of [apple-mcp](https://github.com/dhravya/apple-mcp), stripped to Calendar / Notes / Reminders and wrapped in a local day-memory layer:
+
+- **"How did your dentist appointment go?"** — remembers completed events  
+- **"Don't forget about that presentation at 2pm!"** — proactive reminders  
+- **"I see you created that project outline"** — tracks your notes  
+- **"What's on today?"** — one-shot `briefing` tool  
+
+Same tools, friendlier vibe. Claude stops sounding like a robot reading a database and starts sounding like someone who 'members your day.
 
 ---
 
@@ -18,26 +36,21 @@ Member Berries is a macOS MCP server. It gives Claude (or Cursor / Claude Code) 
 
 | You are… | Start here |
 |---|---|
-| A macOS Claude Desktop user who wants an assistant that remembers the day | Install below, then ask: *“What’s on today?”* |
-| On Cursor or Claude Code | Same Bun server — see install JSON for each host |
+| A macOS Claude user who wants an assistant with *personality* | Install below, paste the optional prompt, ask *“What's on today?”* |
+| On Cursor or Claude Code | Same Bun server — see host config |
 | Privacy-first | Local `~/.member-berries-memory.json` (mode 600). No cloud sync from this server |
-| Already using Memory Service / other Apple MCPs | Member Berries is **behavioural day-memory** on Calendar/Notes/Reminders — not general conversation memory |
-
-### Positioning
-
-- **Member Berries** — personality + day briefing on Calendar / Notes / Reminders
-- **apple-reminders / Notes MCPs** — deeper single-app CRUD if you need it
-- **Memory Service** — long-lived conversational context across projects
+| Already using Memory Service / other Apple MCPs | This is **fun day-memory + Apple surfaces**, not general conversation memory |
 
 ---
 
 ## Features
 
 - **Briefing** — one `briefing` / `today` call for calendar, due reminders, note titles, starters
-- **Calendar** — search, list, open, create
-- **Notes** — list/search return title + snippet by default; full body on demand
-- **Reminders** — list, search, create, complete, delete, listById (real list filter)
-- **Member Berries memory** — conversation starters work out of the box (custom prompt optional)
+- **Calendar memory** — search, list, open, create
+- **Notes** — title + snippet by default; full body on demand
+- **Reminders** — list, search, create, complete, delete, listById
+- **Member Berries memory** — built-in conversation starters ('member energy included)
+- **Focused scope** — Calendar, Notes, Reminders only (no Messages / Mail / Contacts)
 
 ---
 
@@ -51,8 +64,6 @@ bun install
 ```
 
 ### Claude Desktop
-
-Add to your MCP config:
 
 ```json
 {
@@ -69,7 +80,7 @@ Add to your MCP config:
 
 Point an MCP server entry at the same `bun run …/index.ts` command. Restart the host after saving.
 
-Optional: paste [`member-berries/CLAUDE_PROMPT_SETUP.md`](member-berries/CLAUDE_PROMPT_SETUP.md) into custom instructions for a stronger personality. Built-in starters work without it.
+**Optional but tasty:** paste [`member-berries/CLAUDE_PROMPT_SETUP.md`](member-berries/CLAUDE_PROMPT_SETUP.md) into custom instructions for the full Member Berries personality. Built-in starters still work without it.
 
 Grant macOS automation / Calendar / Reminders / Notes access when prompted. Keep Reminders open for reminder tools.
 
@@ -79,7 +90,7 @@ Grant macOS automation / Calendar / Reminders / Notes access when prompted. Keep
 
 | Tool | Operations |
 |---|---|
-| `briefing` | `today` — day summary |
+| `briefing` | `today` — day summary with a side of 'member |
 | `calendar` | `search`, `list`, `open`, `create` |
 | `notes` | `search`, `list`, `get`, `create` (`includeBody`, `folderName`) |
 | `reminders` | `list`, `search`, `open`, `create`, `listById`, `complete`, `delete` |
@@ -95,10 +106,18 @@ If Member Berries has made Claude feel more like a helpful friend who remembers 
 
 <a href="https://www.buymeacoffee.com/mpineapple" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
+Your support helps keep the berries fresh: Apple integrations, personality polish, and compatibility with host updates.
+
+Thank you for helping Claude 'member! 
+
 ---
 
 ## License
 
 MIT — see [LICENSE](./LICENSE). Fork lineage: [apple-mcp](https://github.com/dhravya/apple-mcp).
 
-*Member when AI assistants felt like friends? Member Berries 'members.*
+Member Berries is an independent project. The name pays homage to South Park’s Member Berries; no affiliation or endorsement is implied.
+
+---
+
+*'Member when AI assistants felt like friends? Member Berries 'members.*
