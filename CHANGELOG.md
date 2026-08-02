@@ -5,10 +5,18 @@ All notable changes to Member Berries Apple MCP will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.1] - 2026-08-02
+
+### Fixed
+- README logo now uses `assets/logo.png` so GitHub renders it reliably (SVG source kept)
+
+### Changed
+- README restores the fun Member Berries personality and notes the South Park homage (no affiliation)
+
 ## [2.1.0] - 2026-08-02
 
 ### Added
-- Product logo (`assets/logo.svg`) and CPC-style README packaging
+- Product logo (`assets/logo.svg` / `assets/logo.png`) and CPC-style README packaging
 - `briefing` tool (`today`) — calendar, due reminders, note titles, starters
 - Reminders `complete` and `delete` operations
 - Notes `get` operation, `includeBody` flag, folder scoping on list/search
