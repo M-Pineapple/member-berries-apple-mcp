@@ -182,6 +182,18 @@ describe("public hygiene smoke", () => {
     }
   });
 
+  test("root LICENSE is standard MIT with Pineapple holder and no emoji", () => {
+    const license = readFileSync(
+      new URL("../../LICENSE", import.meta.url),
+      "utf-8"
+    );
+    expect(license.startsWith("MIT License\n")).toBe(true);
+    expect(license).toMatch(/Copyright \(c\) 2025 Pineapple\n/);
+    expect(license).not.toMatch(/[\u{1F300}-\u{1FAFF}]/u);
+    expect(license).toContain("Permission is hereby granted, free of charge");
+    expect(license).not.toMatch(/Current Ventures/);
+  });
+
   test("no BLS.gov string in calendar source", () => {
     const calendar = readFileSync(
       new URL("../utils/calendar.ts", import.meta.url),
