@@ -5,6 +5,12 @@ All notable changes to Member Berries Apple MCP will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+- Root LICENSE is now the standard MIT text (copyright holder Pineapple, no emoji) so GitHub can detect it
+- README adds a badge row, a Usage section, and a More MCP servers by M-Pineapple block
+
 ## [2.1.1] - 2026-08-02
 
 ### Fixed

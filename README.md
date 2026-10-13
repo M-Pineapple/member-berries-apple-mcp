@@ -9,6 +9,10 @@ Member Berries 'members.
 
 Give Claude memory of your Apple Calendar, Notes & Reminders — with personality.
 
+[![Licence: MIT](https://img.shields.io/github/license/M-Pineapple/member-berries-apple-mcp)](LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Stars](https://img.shields.io/github/stars/M-Pineapple/member-berries-apple-mcp)](https://github.com/M-Pineapple/member-berries-apple-mcp/stargazers)
+
 </div>
 
 A fun macOS MCP that makes Claude feel like a helpful friend who actually remembers your day. Named in **homage to South Park’s Member Berries** — those nostalgic little berries that go *“'Member …?”* — this server brings that same playful “remember when…” energy to your calendar, notes, and reminders.
@@ -86,6 +90,20 @@ Grant macOS automation / Calendar / Reminders / Notes access when prompted. Keep
 
 ---
 
+## Usage
+
+Once the host has the server running, talk to it in natural language:
+
+- "What's on today?"
+- "How did the dentist appointment go?"
+- "Don't forget about that presentation at 2pm"
+- "Search my notes for the project outline"
+- "Create a reminder to buy milk"
+
+The `briefing` tool is the one-shot day summary. Calendar, Notes and Reminders cover the rest. See [MCP tools](#mcp-tools) and [`member-berries/README.md`](member-berries/README.md) for operation names.
+
+---
+
 ## MCP tools
 
 | Tool | Operations |
@@ -97,6 +115,20 @@ Grant macOS automation / Calendar / Reminders / Notes access when prompted. Keep
 | `memberberries` | `get_starters`, `get_memories`, `check_events` |
 
 More detail: [`member-berries/README.md`](member-berries/README.md).
+
+---
+
+## More MCP servers by M-Pineapple
+
+Other MCP servers in this portfolio:
+
+- [Claude Project Coordinator](https://github.com/M-Pineapple/Claude-Project-Coordinator). Track Xcode projects, status, tech stack and health.
+- [CryptoAnalysisMCP](https://github.com/M-Pineapple/CryptoAnalysisMCP). Cryptocurrency technical analysis for Claude Desktop.
+- [Warp Command Runner](https://github.com/M-Pineapple/warp-command-runner). Give any chat AI a real terminal.
+- [Msty Admin MCP](https://github.com/M-Pineapple/msty-admin-mcp). Administer Msty Studio Desktop.
+- [SeaShell](https://github.com/M-Pineapple/seashell). Talk to Claude from any terminal block.
+- [TextEdit MCP](https://github.com/M-Pineapple/TextEdit-MCP). Formatted RTF documents via macOS TextEdit.
+- [HubSpot Auditor](https://github.com/M-Pineapple/hubspot-auditor). Read-only HubSpot portal audit.
 
 ---
 
@@ -114,7 +146,7 @@ Thank you for helping Claude 'member!
 
 ## License
 
-MIT — see [LICENSE](./LICENSE). Fork lineage: [apple-mcp](https://github.com/dhravya/apple-mcp).
+MIT. See [LICENSE](./LICENSE). Fork lineage: [apple-mcp](https://github.com/dhravya/apple-mcp).
 
 Member Berries is an independent project. The name pays homage to South Park’s Member Berries; no affiliation or endorsement is implied.
 
