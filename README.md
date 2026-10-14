@@ -7,7 +7,7 @@
 **'Member when AI assistants felt like friends?**  
 Member Berries 'members.
 
-Give Claude memory of your Apple Calendar, Notes & Reminders — with personality.
+Your AI assistant (Claude, ChatGPT, Cursor or any MCP client) gets local memory of Calendar, Notes and Reminders — so it actually 'members your day.
 
 [![Licence: MIT](https://img.shields.io/github/license/M-Pineapple/member-berries-apple-mcp)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
@@ -15,11 +15,55 @@ Give Claude memory of your Apple Calendar, Notes & Reminders — with personalit
 
 </div>
 
-A fun macOS MCP that makes Claude feel like a helpful friend who actually remembers your day. Named in **homage to South Park’s Member Berries** — those nostalgic little berries that go *“'Member …?”* — this server brings that same playful “remember when…” energy to your calendar, notes, and reminders.
+<p align="center">
+  <img src="docs/demo.gif" alt="Scripted demo: Member Berries saves a dentist preference to Apple Notes tonight, then recalls it from Notes in a new chat the next morning" width="880" />
+</p>
+
+<p align="center"><em>Scripted demo, not a live Mac recording. Tonight <code>notes.create</code> writes to Apple Notes. Next morning a new chat <code>notes.search</code> reads it back. Calendar and Reminders use the same local loop. Nothing in this GIF is a real capture. Your data stays on your Mac.</em></p>
+
+A fun macOS MCP that makes your assistant feel like a helpful friend who actually remembers your day. Named in **homage to South Park’s Member Berries** — those nostalgic little berries that go *“'Member …?”* — this server brings that same playful “remember when…” energy to your calendar, notes, and reminders.
 
 Not affiliated with South Park or Comedy Central. Just a wink, a berry cluster, and a local memory file.
 
 **v2.1.1** · [MCP](https://modelcontextprotocol.io) · MIT · Bun · data stays on your Mac
+
+---
+
+## Quick start
+
+Three steps. Then ask *“What's on today?”*
+
+1. **Install Bun and the server**
+
+   ```bash
+   brew install bun
+   git clone https://github.com/M-Pineapple/member-berries-apple-mcp.git
+   cd member-berries-apple-mcp/member-berries
+   bun install
+   ```
+
+2. **Point your MCP client at it**
+
+   Claude Desktop example (same `bun run …/index.ts` command works in ChatGPT, Cursor, Claude Code or any other MCP host):
+
+   ```json
+   {
+     "mcpServers": {
+       "member-berries": {
+         "command": "bun",
+         "args": ["run", "/ABSOLUTE/PATH/member-berries-apple-mcp/member-berries/index.ts"]
+       }
+     }
+   }
+   ```
+
+   Restart the host after saving.
+
+3. **Talk to it**
+
+   Grant macOS automation / Calendar / Reminders / Notes access when prompted. Keep Reminders open for reminder tools. Then ask *“What's on today?”*
+
+**Optional but tasty:** paste [`member-berries/CLAUDE_PROMPT_SETUP.md`](member-berries/CLAUDE_PROMPT_SETUP.md) into custom instructions for the full Member Berries personality. Built-in starters still work without it.
 
 ---
 
@@ -32,7 +76,7 @@ A personality-first fork of [apple-mcp](https://github.com/dhravya/apple-mcp), s
 - **"I see you created that project outline"** — tracks your notes  
 - **"What's on today?"** — one-shot `briefing` tool  
 
-Same tools, friendlier vibe. Claude stops sounding like a robot reading a database and starts sounding like someone who 'members your day.
+Same tools, friendlier vibe. The assistant stops sounding like a robot reading a database and starts sounding like someone who 'members your day.
 
 ---
 
@@ -40,8 +84,8 @@ Same tools, friendlier vibe. Claude stops sounding like a robot reading a databa
 
 | You are… | Start here |
 |---|---|
-| A macOS Claude user who wants an assistant with *personality* | Install below, paste the optional prompt, ask *“What's on today?”* |
-| On Cursor or Claude Code | Same Bun server — see host config |
+| A macOS user who wants an assistant with *personality* | Install above, paste the optional prompt, ask *“What's on today?”* |
+| On Cursor, ChatGPT, Claude Code or another MCP host | Same Bun server — see host config |
 | Privacy-first | Local `~/.member-berries-memory.json` (mode 600). No cloud sync from this server |
 | Already using Memory Service / other Apple MCPs | This is **fun day-memory + Apple surfaces**, not general conversation memory |
 
@@ -55,38 +99,6 @@ Same tools, friendlier vibe. Claude stops sounding like a robot reading a databa
 - **Reminders** — list, search, create, complete, delete, listById
 - **Member Berries memory** — built-in conversation starters ('member energy included)
 - **Focused scope** — Calendar, Notes, Reminders only (no Messages / Mail / Contacts)
-
----
-
-## Quick start
-
-```bash
-brew install bun
-git clone https://github.com/M-Pineapple/member-berries-apple-mcp.git
-cd member-berries-apple-mcp/member-berries
-bun install
-```
-
-### Claude Desktop
-
-```json
-{
-  "mcpServers": {
-    "member-berries": {
-      "command": "bun",
-      "args": ["run", "/ABSOLUTE/PATH/member-berries-apple-mcp/member-berries/index.ts"]
-    }
-  }
-}
-```
-
-### Cursor / Claude Code
-
-Point an MCP server entry at the same `bun run …/index.ts` command. Restart the host after saving.
-
-**Optional but tasty:** paste [`member-berries/CLAUDE_PROMPT_SETUP.md`](member-berries/CLAUDE_PROMPT_SETUP.md) into custom instructions for the full Member Berries personality. Built-in starters still work without it.
-
-Grant macOS automation / Calendar / Reminders / Notes access when prompted. Keep Reminders open for reminder tools.
 
 ---
 
@@ -134,13 +146,15 @@ Other MCP servers in this portfolio:
 
 ## Support this project
 
-If Member Berries has made Claude feel more like a helpful friend who remembers your day, consider buying me a coffee:
+If Member Berries has made your assistant feel more like a helpful friend who remembers your day, consider buying me a coffee:
 
 <a href="https://www.buymeacoffee.com/mpineapple" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
 Your support helps keep the berries fresh: Apple integrations, personality polish, and compatibility with host updates.
 
-Thank you for helping Claude 'member! 
+Thank you for helping it 'member!
+
+If this saves you time, a [star](https://github.com/M-Pineapple/member-berries-apple-mcp/stargazers) helps others find it.
 
 ---
 

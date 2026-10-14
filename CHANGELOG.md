@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Root LICENSE is now the standard MIT text (copyright holder Pineapple, no emoji) so GitHub can detect it
 - README adds a badge row, a Usage section, and a More MCP servers by M-Pineapple block
+- README conversion pass: one-line value hook, scripted demo GIF (`docs/demo.gif`), 3-step quick start, and a gentle star ask. GIF is a simulated two-session Notes loop, not a live Mac capture. Regenerator: `docs/render-demo.py`. Hook and surrounding copy name any MCP client (Claude, ChatGPT, Cursor), not a single host.
 
 ## [2.1.1] - 2026-08-02
 
