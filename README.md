@@ -25,7 +25,7 @@ A fun macOS MCP that makes your assistant feel like a helpful friend who actuall
 
 Not affiliated with South Park or Comedy Central. Just a wink, a berry cluster, and a local memory file.
 
-**v2.1.1** · [MCP](https://modelcontextprotocol.io) · MIT · Bun · data stays on your Mac
+**v2.1.2** · [MCP](https://modelcontextprotocol.io) · MIT · Bun · data stays on your Mac
 
 ---
 
