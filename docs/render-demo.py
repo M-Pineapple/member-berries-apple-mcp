@@ -356,7 +356,7 @@ def frames() -> list[tuple[Image.Image, int]]:
 
     # 1. empty
     base_s1 = {
-        "chat_title": "Claude  ·  Member Berries connected",
+        "chat_title": "Chat  ·  Member Berries connected",
         "chip": "Session 1  ·  tonight",
         "messages": [],
         "note_appear": 0.0,
@@ -412,7 +412,7 @@ def frames() -> list[tuple[Image.Image, int]]:
     # 6. session wipe
     for t in (0.3, 0.7, 1.0):
         st = {
-            "chat_title": "Claude  ·  Member Berries connected",
+            "chat_title": "Chat  ·  Member Berries connected",
             "chip": "Session 2  ·  next morning",
             "messages": [],
             "note_title": NOTE_TITLE,
@@ -423,7 +423,7 @@ def frames() -> list[tuple[Image.Image, int]]:
         add(st, 180)
 
     s2 = {
-        "chat_title": "Claude  ·  Member Berries connected",
+        "chat_title": "Chat  ·  Member Berries connected",
         "chip": "Session 2  ·  next morning",
         "messages": [],
         "note_title": NOTE_TITLE,
