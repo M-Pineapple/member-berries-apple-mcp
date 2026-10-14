@@ -29,6 +29,8 @@ Not affiliated with South Park or Comedy Central. Just a wink, a berry cluster, 
 
 ---
 
+> **macOS only.** Member Berries drives Apple Calendar, Reminders and Notes through macOS automation, so its tools only work on a Mac. It installs on Linux or Windows, but the tools there will fail.
+
 ## Quick start
 
 Three steps. Then ask *“What's on today?”*
