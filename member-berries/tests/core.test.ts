@@ -27,7 +27,7 @@ describe("version pin", () => {
       readFileSync(new URL("../package.json", import.meta.url), "utf-8")
     );
     expect(VERSION).toBe(pkg.version);
-    expect(VERSION).toBe("2.1.2");
+    expect(VERSION).toBe("2.1.3");
   });
 });
 
