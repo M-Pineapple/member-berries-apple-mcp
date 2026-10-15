@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Security
+- Raised the MCP SDK floor to `^1.32.1` and refreshed `bun.lock`, clearing known advisories in transitive dependencies. Details are in a private advisory.
+
+### Fixed
+- Restored the original author's copyright line in both LICENSE files, as the MIT licence requires (#9)
+
+### Changed
+- CI: workflow token limited to `contents: read` and actions pinned to commit SHAs (#10)
+
 ## [2.1.2] - 2026-10-14
 
 ### Changed
