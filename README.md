@@ -12,6 +12,7 @@ Your AI assistant (Claude, ChatGPT, Cursor or any MCP client) gets local memory 
 [![Licence: MIT](https://img.shields.io/github/license/M-Pineapple/member-berries-apple-mcp)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Stars](https://img.shields.io/github/stars/M-Pineapple/member-berries-apple-mcp)](https://github.com/M-Pineapple/member-berries-apple-mcp/stargazers)
+[![M-Pineapple/member-berries-apple-mcp MCP server](https://glama.ai/mcp/servers/M-Pineapple/member-berries-apple-mcp/badges/score.svg)](https://glama.ai/mcp/servers/M-Pineapple/member-berries-apple-mcp)
 
 </div>
 
