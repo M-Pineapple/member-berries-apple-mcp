@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.3] - 2026-10-15
+
 ### Security
 - Raised the MCP SDK floor to `^1.32.1` and refreshed `bun.lock`, clearing known advisories in transitive dependencies. Details are in a private advisory.
 
