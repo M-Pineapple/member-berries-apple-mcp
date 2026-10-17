@@ -1,14 +1,14 @@
 {
   "name": "member-berries-apple-mcp",
-  "version": "2.1.3",
-  "module": "index.ts",
+  "version": "2.1.4",
   "type": "module",
   "description": "Member Berries — a friendly Apple MCP for Calendar, Notes, and Reminders with local day-memory",
   "author": "Pineapple (M-Pineapple)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/M-Pineapple/member-berries-apple-mcp.git"
+    "url": "git+https://github.com/M-Pineapple/member-berries-apple-mcp.git",
+    "directory": "member-berries"
   },
   "bugs": {
     "url": "https://github.com/M-Pineapple/member-berries-apple-mcp/issues"
@@ -16,22 +16,39 @@
   "homepage": "https://github.com/M-Pineapple/member-berries-apple-mcp#readme",
   "keywords": [
     "mcp",
+    "mcp-server",
+    "model-context-protocol",
     "apple",
+    "macos",
     "calendar",
     "notes",
     "reminders",
     "claude",
     "cursor",
-    "member-berries",
-    "macos"
+    "member-berries"
   ],
+  "main": "./dist/index.js",
   "bin": {
-    "member-berries-mcp": "./index.ts"
+    "member-berries-mcp": "./dist/index.js"
   },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CLAUDE_PROMPT_SETUP.md"
+  ],
   "scripts": {
     "dev": "bun run index.ts",
     "start": "bun run index.ts",
+    "build": "bun build ./index.ts --target node --outdir dist --packages external",
+    "prepublishOnly": "bun run build",
     "test": "bun test tests"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "devDependencies": {
     "@types/bun": "latest",
