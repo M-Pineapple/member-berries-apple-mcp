@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.4] - 2026-10-17
+
+### Added
+- npm packaging: `bun run build` compiles `index.ts` to `dist/index.js` for Node 18+, and `bin`, `main`, `files`, `engines` and `publishConfig` are set so the package can be published as `member-berries-apple-mcp`
+- `.github/workflows/publish.yml`: publishes to npm with GitHub Actions OIDC (Trusted Publishing, `--provenance`) when a `v*` tag matching `package.json` is pushed
+
+### Changed
+- Entry point shebang is `node`, so the published `member-berries-mcp` binary runs without Bun (`bun run index.ts` still works for development)
+- CI also builds the package and checks the tarball contents with `npm pack --dry-run`
+- Keywords add `mcp-server` and `model-context-protocol`
+
 ## [2.1.3] - 2026-10-15
 
 ### Security
