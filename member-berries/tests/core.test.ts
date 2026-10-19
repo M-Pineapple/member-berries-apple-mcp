@@ -192,7 +192,8 @@ describe("public hygiene smoke", () => {
     expect(license).not.toMatch(/[\u{1F300}-\u{1FAFF}]/u);
     expect(license).toContain("Permission is hereby granted, free of charge");
     expect(license).not.toMatch(/Current Ventures/);
-    expect(license).toContain("Portions Copyright (c) 2024 Dhravya Shah");
+    // Single copyright line so GitHub detects MIT; upstream notice lives in THIRD_PARTY_NOTICES.md
+    expect(license).not.toMatch(/Dhravya Shah/);
   });
 
   test("no BLS.gov string in calendar source", () => {
