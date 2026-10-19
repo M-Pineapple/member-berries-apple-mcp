@@ -28,3 +28,11 @@ jobs:
           PKG=$(bun -e 'console.log(require("./package.json").version)')
           VER=$(bun -e 'import { VERSION } from "./version.ts"; console.log(VERSION)')
           test "$PKG" = "$VER"
+      - name: Build
+        run: bun run build
+      - name: Smoke test built server on Node
+        run: |
+          printf '%s\n' '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"ci","version":"1"}}}' \
+            | timeout 10 node dist/index.js | grep -q '"serverInfo"'
+      - name: Check package contents
+        run: npm pack --dry-run
