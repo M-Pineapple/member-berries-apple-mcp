@@ -20,8 +20,7 @@ test("lockfile resolves the MCP SDK at or above the floor", () => {
   expect(atLeast(ver(m![1]), [1, 32, 1])).toBe(true);
 });
 
-test("both LICENSE files keep the original author's copyright", () => {
-  for (const p of ["../LICENSE", "../../LICENSE"]) {
-    expect(readFileSync(join(import.meta.dir, p), "utf8")).toContain("Portions Copyright (c) 2024 Dhravya Shah");
-  }
+test("package LICENSE and root THIRD_PARTY_NOTICES keep the original author's copyright", () => {
+  expect(readFileSync(join(import.meta.dir, "../LICENSE"), "utf8")).toContain("Portions Copyright (c) 2024 Dhravya Shah");
+  expect(readFileSync(join(import.meta.dir, "../../THIRD_PARTY_NOTICES.md"), "utf8")).toContain("Copyright (c) 2024 Dhravya Shah");
 });
