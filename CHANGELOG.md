@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- README install docs for npm, beside the existing Bun steps. Global install is `npm install -g member-berries-apple-mcp`. The MCP client snippet runs `npx -y member-berries-apple-mcp`, which starts the `member-berries-mcp` bin. Checked against the published 2.1.4 release.
+
 ## [2.1.4] - 2026-10-17
 
 ### Added

@@ -26,7 +26,7 @@ A fun macOS MCP that makes your assistant feel like a helpful friend who actuall
 
 Not affiliated with South Park or Comedy Central. Just a wink, a berry cluster, and a local memory file.
 
-**v2.1.4** · [MCP](https://modelcontextprotocol.io) · MIT · Bun · data stays on your Mac
+**v2.1.4** · [MCP](https://modelcontextprotocol.io) · MIT · Bun or npm · data stays on your Mac
 
 ---
 
@@ -34,9 +34,11 @@ Not affiliated with South Park or Comedy Central. Just a wink, a berry cluster, 
 
 ## Quick start
 
-Three steps. Then ask *“What's on today?”*
+Three steps. Then ask *“What's on today?”* Bun runs a clone of the source. npm runs the published package.
 
-1. **Install Bun and the server**
+1. **Install the server**
+
+   **Bun**
 
    ```bash
    brew install bun
@@ -45,7 +47,23 @@ Three steps. Then ask *“What's on today?”*
    bun install
    ```
 
+   **npm**
+
+   Node.js 18 or later is enough. The package on npm is [`member-berries-apple-mcp`](https://www.npmjs.com/package/member-berries-apple-mcp) (current release 2.1.4). The bin is `member-berries-mcp`.
+
+   ```bash
+   npm install -g member-berries-apple-mcp
+   ```
+
+   `npx` can fetch and run that same bin. It starts the stdio server, which is what an MCP host does:
+
+   ```bash
+   npx -y member-berries-apple-mcp
+   ```
+
 2. **Point your MCP client at it**
+
+   **Bun**
 
    Claude Desktop example (same `bun run …/index.ts` command works in ChatGPT, Cursor, Claude Code or any other MCP host):
 
@@ -61,6 +79,23 @@ Three steps. Then ask *“What's on today?”*
    ```
 
    Restart the host after saving.
+
+   **npm**
+
+   Claude Desktop example (same `npx` command works in ChatGPT, Cursor, Claude Code or any other MCP host):
+
+   ```json
+   {
+     "mcpServers": {
+       "member-berries": {
+         "command": "npx",
+         "args": ["-y", "member-berries-apple-mcp"]
+       }
+     }
+   }
+   ```
+
+   `npx -y member-berries-apple-mcp` runs the `member-berries-mcp` bin. Restart the host after saving. When `member-berries-mcp` is on your PATH, set `command` to `member-berries-mcp` and `args` to `[]`.
 
 3. **Talk to it**
 
@@ -88,7 +123,7 @@ Same tools, friendlier vibe. The assistant stops sounding like a robot reading a
 | You are… | Start here |
 |---|---|
 | A macOS user who wants an assistant with *personality* | Install above, paste the optional prompt, ask *“What's on today?”* |
-| On Cursor, ChatGPT, Claude Code or another MCP host | Same Bun server — see host config |
+| On Cursor, ChatGPT, Claude Code or another MCP host | Bun or npm. See [Quick start](#quick-start) |
 | Privacy-first | Local `~/.member-berries-memory.json` (mode 600). No cloud sync from this server |
 | Already using Memory Service / other Apple MCPs | This is **fun day-memory + Apple surfaces**, not general conversation memory |
 
