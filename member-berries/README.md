@@ -1,10 +1,12 @@
 # Member Berries — package docs
 
-Runnable Bun package for the Member Berries Apple MCP server.
+Runnable package for the Member Berries Apple MCP server. Install with Bun from a clone, or with npm.
 
 Named in homage to South Park’s Member Berries — a fun, personality-first day-memory layer on Calendar / Notes / Reminders. Not affiliated with South Park or Comedy Central.
 
 ## Install
+
+### Bun
 
 ```bash
 bun install
@@ -16,6 +18,35 @@ Or run directly:
 ```bash
 bun run index.ts
 ```
+
+### npm
+
+Node.js 18 or later is enough. The package on npm is [`member-berries-apple-mcp`](https://www.npmjs.com/package/member-berries-apple-mcp) (current release 2.1.4). The bin is `member-berries-mcp`.
+
+```bash
+npm install -g member-berries-apple-mcp
+```
+
+`npx` can fetch and run that same bin. It starts the stdio server, which is what an MCP host does:
+
+```bash
+npx -y member-berries-apple-mcp
+```
+
+MCP client config (Claude Desktop, and the same `npx` command in ChatGPT, Cursor, Claude Code or any other MCP host):
+
+```json
+{
+  "mcpServers": {
+    "member-berries": {
+      "command": "npx",
+      "args": ["-y", "member-berries-apple-mcp"]
+    }
+  }
+}
+```
+
+`npx -y member-berries-apple-mcp` runs the `member-berries-mcp` bin. Restart the host after saving. When `member-berries-mcp` is on your PATH, set `command` to `member-berries-mcp` and `args` to `[]`.
 
 ## Tools
 
