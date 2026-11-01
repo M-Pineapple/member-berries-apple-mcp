@@ -172,7 +172,7 @@ More detail: [`member-berries/README.md`](member-berries/README.md).
 
 Other MCP servers in this portfolio:
 
-- [Claude Project Coordinator](https://github.com/M-Pineapple/Claude-Project-Coordinator). Track Xcode projects, status, tech stack and health.
+- [Dev Project Coordinator](https://github.com/M-Pineapple/Dev-Project-Coordinator). Local desk for AI agents to track coding and non-coding projects, with Analytics and Kanban views.
 - [CryptoAnalysisMCP](https://github.com/M-Pineapple/CryptoAnalysisMCP). Cryptocurrency technical analysis for Claude Desktop.
 - [Warp Command Runner](https://github.com/M-Pineapple/warp-command-runner). Give any chat AI a real terminal.
 - [Msty Admin MCP](https://github.com/M-Pineapple/msty-admin-mcp). Administer Msty Studio Desktop.
