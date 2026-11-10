@@ -11,13 +11,13 @@ const atLeast = (a: number[], b: number[]) => {
 };
 
 test("MCP SDK floor excludes versions with known advisories", () => {
-  expect(atLeast(ver(pkg.dependencies["@modelcontextprotocol/sdk"]), [1, 32, 1])).toBe(true);
+  expect(atLeast(ver(pkg.dependencies["@modelcontextprotocol/sdk"]), [1, 32, 2])).toBe(true);
 });
 
 test("lockfile resolves the MCP SDK at or above the floor", () => {
   const m = lock.match(/"@modelcontextprotocol\/sdk@([0-9.]+)"/);
   expect(m).not.toBeNull();
-  expect(atLeast(ver(m![1]), [1, 32, 1])).toBe(true);
+  expect(atLeast(ver(m![1]), [1, 32, 2])).toBe(true);
 });
 
 const locked = (name: string) => {
