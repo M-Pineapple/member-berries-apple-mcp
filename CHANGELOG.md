@@ -7,9 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
+## [2.1.5] - 2026-11-10
 
+### Added
 - README install docs for npm, beside the existing Bun steps. Global install is `npm install -g member-berries-apple-mcp`. The MCP client snippet runs `npx -y member-berries-apple-mcp`, which starts the `member-berries-mcp` bin. Checked against the published 2.1.4 release.
+
+### Security
+- `zod` from 3.25.76 to 4.6.7 (GHSA-mrhx-c7xc-m3w5, memory exhaustion on large arrays) and `@modelcontextprotocol/sdk` floor raised to 1.32.2
+- Lockfile resolves `body-parser` 2.4.0 (GHSA-27r3-jxmh-p828) and `fast-uri` 3.1.9 (GHSA-w74x-v6f9-j3xg, GHSA-xhq7-xmqj-769h, GHSA-wjr9-j795-jxcr, GHSA-333x-w4r6-6crp). `qs` stays at 6.16.1, above GHSA-6pq8-jhm2-2vcw. `bun audit` reports no vulnerabilities
+- CI and publish workflows pin Bun to 1.4.4 and npm to 12.2.2 instead of `latest`, and `@types/bun` is pinned to 1.4.3
+- Tests fail if a workflow goes back to `latest` or a dependency drops below its advisory floor
 
 ## [2.1.4] - 2026-10-17
 
