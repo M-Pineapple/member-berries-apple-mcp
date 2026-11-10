@@ -26,6 +26,15 @@ test("publish workflow uses OIDC, provenance and SHA-pinned actions", () => {
   for (const u of uses) expect(u).toMatch(/@[0-9a-f]{40}$/);
 });
 
+test("CI and publish workflows pin their tool versions", () => {
+  for (const w of [wf, pub]) {
+    expect(w).not.toMatch(/@latest|bun-version:\s*latest|releases\/latest/);
+    expect(w).toMatch(/bun-version:\s*\d+\.\d+\.\d+/);
+  }
+  expect(pub).toMatch(/npm install -g npm@\d+\.\d+\.\d+\n/);
+  expect(pkg.devDependencies["@types/bun"]).toMatch(/^\d+\.\d+\.\d+$/);
+});
+
 test("package ships compiled JS for Node, not TypeScript", () => {
   expect(pkg.bin["member-berries-mcp"]).toBe("./dist/index.js");
   expect(pkg.main).toBe("./dist/index.js");
